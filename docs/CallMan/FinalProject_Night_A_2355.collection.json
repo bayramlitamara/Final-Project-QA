@@ -1,0 +1,216 @@
+{
+  "info": {
+    "_postman_id": "7ddda5aa-1ff3-4e53-bfbc-7b3cd1e2526b",
+    "name": "Gecə A — 23:55 (Bakı)",
+    "description": "Bakı vaxtı ilə 23:30–23:58 arası işə salın. Yeni sandbox açır, kart yaradır və ödəniş edir.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "[A 23:55] Login user1 (gecə sandbox-u)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{user1Email}}\",\n  \"password\": \"{{user1Password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[A 23:55] Login user1 (gecə sandbox-u)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "__t(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.environment.set(\"tokenNight\", pm.response.json().token);",
+              "pm.environment.set(\"failures\", \"[]\"); pm.environment.set(\"observations\", \"[]\"); pm.environment.set(\"runId\", String(Date.now()));",
+              "pm.environment.set(\"bakuDateA\", new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "[A 23:55] Kart 1000 AZN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": \"acc_002\",\n  \"initialAmount\": 1000,\n  \"label\": \"Night test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[A 23:55] Kart 1000 AZN\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "__t(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"nightCardId\", pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "[A 23:55] Ödəniş CityNet 50 (total 50.5)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "k-night-a-{{runId}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardId\": \"{{nightCardId}}\",\n  \"billerId\": \"citynet\",\n  \"subscriberNo\": \"CN123456\",\n  \"amount\": 50\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[A 23:55] Ödəniş CityNet 50 (total 50.5)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "__t(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"nightPay1Id\", pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-202-005 (1/2) 23:55 — spentToday",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards/{{nightCardId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards",
+            "{{nightCardId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-202-005 (1/2) 23:55 — spentToday\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "const r = pm.response.json();",
+              "__t(\"23:55 spentToday = \" + r.spentToday + \", availableBalance = \" + r.availableBalance + \" (Bakı tarixi \" + pm.environment.get(\"bakuDateA\") + \")\", () => true);",
+              "__t(\"spentToday = 50.5\", () => pm.expect(r.spentToday).to.eql(50.5));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

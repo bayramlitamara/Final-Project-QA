@@ -1,0 +1,392 @@
+{
+  "info": {
+    "_postman_id": "321aa011-eb13-498f-a091-c67080c047db",
+    "name": "Tamara Məlikova — Manual 2 (302-019/020, 203-017)",
+    "description": "Əlavə manual testlər. Environment: Final Project — Test. Runner ilə ardıcıl işə salın.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "[M2] Login user1 (yeni sandbox)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{user1Email}}\",\n  \"password\": \"{{user1Password}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[M2] Login user1 (yeni sandbox)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "__t(\"Status 200\", () => pm.response.to.have.status(200));",
+              "pm.environment.set(\"token\", pm.response.json().token);",
+              "pm.environment.set(\"failures\", \"[]\"); pm.environment.set(\"observations\", \"[]\"); pm.environment.set(\"runId\", String(Date.now()));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "[M2] Hazırlıq: kart 1000 AZN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": \"acc_002\",\n  \"initialAmount\": 1000,\n  \"label\": \"Limit test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[M2] Hazırlıq: kart 1000 AZN\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "__t(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"card5Id\", pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-302-019 Azərişıq 300.01 (komissiya yoxdur)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "k-302-019-{{runId}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardId\": \"{{card5Id}}\",\n  \"billerId\": \"azerisiq\",\n  \"subscriberNo\": \"1234567890\",\n  \"amount\": 300.01\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-302-019 Azərişıq 300.01 (komissiya yoxdur)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-302-020 Azərişıq 300.00",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "k-302-020-{{runId}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardId\": \"{{card5Id}}\",\n  \"billerId\": \"azerisiq\",\n  \"subscriberNo\": \"1234567890\",\n  \"amount\": 300.0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-302-020 Azərişıq 300.00\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "try { const r = pm.response.json(); __t(\"total = \" + r.total + \", fee = \" + r.fee + \", balanceAfter = \" + r.balanceAfter, () => true); } catch (e) {}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "[M2] Hazırlıq: kart 100 AZN (203-017)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": \"acc_002\",\n  \"initialAmount\": 100,\n  \"label\": \"State 2\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[M2] Hazırlıq: kart 100 AZN (203-017)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "__t(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"card6Id\", pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-203-017 (1/2) Kartı FROZEN et",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards/{{card6Id}}/block",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards",
+            "{{card6Id}}",
+            "block"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"reason\": \"TEMPORARY\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-203-017 (1/2) Kartı FROZEN et\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "try { pm.environment.set(\"frozenAt\", pm.response.json().blockedAt); } catch (e) {}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-203-017 (2/2) FROZEN → STOLEN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards/{{card6Id}}/block",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards",
+            "{{card6Id}}",
+            "block"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"reason\": \"STOLEN\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-203-017 (2/2) FROZEN → STOLEN\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "const r = pm.response.json();",
+              "__t(\"blockReason: \" + r.blockReason + \" | FROZEN blockedAt: \" + pm.environment.get(\"frozenAt\") + \" → STOLEN blockedAt: \" + r.blockedAt, () => true);"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

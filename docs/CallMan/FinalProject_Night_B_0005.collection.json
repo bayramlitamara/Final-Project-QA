@@ -1,0 +1,225 @@
+{
+  "info": {
+    "_postman_id": "36bb3df0-f9e3-4ec5-86c5-ca5823b90acb",
+    "name": "Gecə B — 00:05 (Bakı)",
+    "description": "Bakı vaxtı ilə 00:02–03:59 arası işə salın. Login ETMİR — Gecə A-nın sandbox-u (tokenNight) ilə işləyir.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "TC-API-202-005 (2/2) 00:05 — spentToday sıfırlanıb",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/cards/{{nightCardId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "cards",
+            "{{nightCardId}}"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-202-005 (2/2) 00:05 — spentToday sıfırlanıb\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "pm.environment.set(\"bakuDateB\", new Date(Date.now() + 4 * 3600 * 1000).toISOString().slice(0, 10));",
+              "const r = pm.response.json();",
+              "__t(\"00:05 spentToday = \" + r.spentToday + \", availableBalance = \" + r.availableBalance + \" (Bakı tarixi \" + pm.environment.get(\"bakuDateB\") + \")\", () => true);",
+              "__t(\"Bakı tarixi dəyişib\", () => pm.expect(pm.environment.get(\"bakuDateB\")).to.not.eql(pm.environment.get(\"bakuDateA\")));",
+              "__t(\"spentToday = 0\", () => pm.expect(r.spentToday).to.eql(0));",
+              "__t(\"availableBalance dəyişməyib (949.5)\", () => pm.expect(r.availableBalance).to.eql(949.5));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "[B 00:05] Ödəniş CityNet 10 (Bakı: yeni gün, UTC: köhnə gün)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "k-night-b-{{runId}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cardId\": \"{{nightCardId}}\",\n  \"billerId\": \"citynet\",\n  \"subscriberNo\": \"CN123456\",\n  \"amount\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"[B 00:05] Ödəniş CityNet 10 (Bakı: yeni gün, UTC: köhnə gün)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "__t(\"Status 201\", () => pm.response.to.have.status(201));",
+              "pm.environment.set(\"nightPay2Id\", pm.response.json().id);",
+              "try { const r = pm.response.json(); __t(\"createdAt (UTC) = \" + r.createdAt, () => true); } catch (e) {}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-303-013 (1/2) from=to=bu gün (Bakı)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments?from={{bakuDateB}}&to={{bakuDateB}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ],
+          "query": [
+            {
+              "key": "from",
+              "value": "{{bakuDateB}}"
+            },
+            {
+              "key": "to",
+              "value": "{{bakuDateB}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-303-013 (1/2) from=to=bu gün (Bakı)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "const ids = pm.response.json().items.map(i => i.id);",
+              "__t(\"Bu günün siyahısı: \" + JSON.stringify(ids), () => true);",
+              "__t(\"00:05 ödənişi bu günün siyahısındadır\", () => pm.expect(ids).to.include(pm.environment.get(\"nightPay2Id\")));",
+              "__t(\"23:55 ödənişi bu günün siyahısında yoxdur\", () => pm.expect(ids).to.not.include(pm.environment.get(\"nightPay1Id\")));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TC-API-303-013 (2/2) from=to=dünən (Bakı)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{tokenNight}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/bill-payments?from={{bakuDateA}}&to={{bakuDateA}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "bill-payments"
+          ],
+          "query": [
+            {
+              "key": "from",
+              "value": "{{bakuDateA}}"
+            },
+            {
+              "key": "to",
+              "value": "{{bakuDateA}}"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const __RN = \"TC-API-303-013 (2/2) from=to=dünən (Bakı)\";",
+              "function __h(n) { const h = pm.response.headers; const l = n.toLowerCase(); if (!h) return undefined; if (typeof h.get === \"function\") { return h.get(n) || h.get(l); } if (typeof h.toObject === \"function\") { const o = h.toObject(); for (const k in o) if (k.toLowerCase() === l) return o[k]; } if (Array.isArray(h)) { const x = h.find(e => String(e.key || e.name || \"\").toLowerCase() === l); return x ? x.value : undefined; } for (const k in h) if (k.toLowerCase() === l) return h[k]; return undefined; }",
+              "function __txt() { try { if (typeof pm.response.text === \"function\") return pm.response.text(); } catch (e) {} try { return JSON.stringify(pm.response.json()); } catch (e) { return \"\"; } }",
+              "const __F = JSON.parse(pm.environment.get(\"failures\") || \"[]\");",
+              "const __O = JSON.parse(pm.environment.get(\"observations\") || \"[]\");",
+              "function __t(n, fn) { pm.test(n, function () { try { fn(); } catch (e) { __F.push(__RN + \" → \" + n + \": \" + e.message); pm.environment.set(\"failures\", JSON.stringify(__F)); throw e; } }); }",
+              "function __obs(text) { __O.push(__RN + \" → \" + text); pm.environment.set(\"observations\", JSON.stringify(__O)); }",
+              "const s = pm.response.code; let b = {}; try { b = pm.response.json(); } catch (e) {}",
+              "__obs(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\") + \" | \" + __txt().slice(0, 300)); __t(\"Faktiki: \" + s + (b.code ? \" \" + b.code : \"\"), () => true);",
+              "const ids = pm.response.json().items.map(i => i.id);",
+              "__t(\"Dünənin siyahısı: \" + JSON.stringify(ids), () => true);",
+              "__t(\"23:55 ödənişi dünənin siyahısındadır\", () => pm.expect(ids).to.include(pm.environment.get(\"nightPay1Id\")));",
+              "__t(\"00:05 ödənişi dünənin siyahısında yoxdur\", () => pm.expect(ids).to.not.include(pm.environment.get(\"nightPay2Id\")));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

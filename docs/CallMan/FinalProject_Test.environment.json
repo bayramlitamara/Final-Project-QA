@@ -1,0 +1,109 @@
+{
+  "id": "5833e6ef-7835-41de-8007-cf7150d40977",
+  "name": "Final Project — Test",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.anarabbas.com",
+      "enabled": true
+    },
+    {
+      "key": "user1Email",
+      "value": "user1@test.com",
+      "enabled": true
+    },
+    {
+      "key": "user1Password",
+      "value": "User1234",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "user2Email",
+      "value": "user2@test.com",
+      "enabled": true
+    },
+    {
+      "key": "user2Password",
+      "value": "User1234",
+      "enabled": true,
+      "type": "secret"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "token2",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "benId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "benId2",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "cardId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "card2Id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "payId",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "idemKey",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "card3Id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "card4Id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "benId3",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "frozenAt",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "failures",
+      "value": "[]",
+      "enabled": true
+    },
+    {
+      "key": "observations",
+      "value": "[]",
+      "enabled": true
+    },
+    {
+      "key": "runId",
+      "value": "[]",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

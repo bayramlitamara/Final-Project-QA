@@ -1,0 +1,34 @@
+# Kart buraxma sorğusu göndər <accountId> <amount> <label>
+* "cardAccount" deyişenine <accountId> deyerini ver
+* "cardAmount" deyişenine <amount> deyerini ver
+* "cardLabel" deyişenine <label> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* Body olaraq "card.json" faylını elave et
+* "POST" sorğusu gönder "/cards"
+
+# User1 üçün <amount> AZN-lik aktiv kart yaradılır və id <idVar> olaraq saxlanılır
+* Kart buraxma sorğusu göndər "acc_002" <amount> "Test"
+* Status kodunun "201" olmalıdır
+* Json cavabında "status" deyeri "ACTIVE" beraberdir
+* Json cavabında "id" deyerini <idVar> olaraq yadda saxla
+
+# Kart <cardId> <reason> səbəbi ilə bloklama sorğusu göndər
+* "blockCard" deyişenine <cardId> deyerini ver
+* "blockReason" deyişenine <reason> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* Body olaraq "block.json" faylını elave et
+* "POST" sorğusu gönder "/cards/${blockCard}/block"
+
+# Kart <cardId> <reason> səbəbi ilə bloklanır
+* Kart <cardId> <reason> səbəbi ilə bloklama sorğusu göndər
+* Status kodunun "200" olmalıdır
+
+# Kart <cardId> üçün unblock sorğusu göndər
+* "unblockCard" deyişenine <cardId> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* "POST" sorğusu gönder "/cards/${unblockCard}/unblock"
+
+# Kart <cardId> məlumatını al
+* "getCard" deyişenine <cardId> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* "GET" sorğusu gönder "/cards/${getCard}"

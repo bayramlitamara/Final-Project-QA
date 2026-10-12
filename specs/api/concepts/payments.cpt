@@ -1,0 +1,41 @@
+# <idemKey> açarı ilə ödəniş sorğusu göndər <cardId> <billerId> <subscriberNo> <amount>
+* "payCard" deyişenine <cardId> deyerini ver
+* "payBiller" deyişenine <billerId> deyerini ver
+* "paySubscriber" deyişenine <subscriberNo> deyerini ver
+* "payAmount" deyişenine <amount> deyerini ver
+* "payKey" deyişenine <idemKey> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* Header elave et "Idempotency-Key" = "${payKey}"
+* Body olaraq "payment.json" faylını elave et
+* "POST" sorğusu gönder "/bill-payments"
+
+# Ödəniş sorğusu göndər <cardId> <billerId> <subscriberNo> <amount>
+* "${random.uuid}" açarı ilə ödəniş sorğusu göndər <cardId> <billerId> <subscriberNo> <amount>
+
+# Uğurlu ödəniş edilir <cardId> <billerId> <subscriberNo> <amount>
+* Ödəniş sorğusu göndər <cardId> <billerId> <subscriberNo> <amount>
+* Status kodunun "201" olmalıdır
+
+# Tarixçə üçün 18 ödəniş hazırla <cardId>
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100001" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100002" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100003" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100004" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100005" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100006" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100007" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100008" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100009" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100010" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100011" "5"
+* Uğurlu ödəniş edilir <cardId> "citynet" "CN100012" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234561" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234562" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234563" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234564" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234565" "5"
+* Uğurlu ödəniş edilir <cardId> "azercell" "501234566" "5"
+
+# Ödəniş tarixçəsini al <query>
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* "GET" sorğusu gönder <query>

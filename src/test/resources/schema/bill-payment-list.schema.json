@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bill payment history (GRAD-303)",
+  "type": "object",
+  "required": ["page", "limit", "total", "totalPages", "items"],
+  "properties": {
+    "page": { "type": "integer", "minimum": 1 },
+    "limit": { "type": "integer", "minimum": 1, "maximum": 50 },
+    "total": { "type": "integer", "minimum": 0 },
+    "totalPages": { "type": "integer", "minimum": 0 },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "receiptNo", "billerId", "subscriberNo", "amount", "fee", "total", "status", "createdAt"]
+      }
+    }
+  }
+}

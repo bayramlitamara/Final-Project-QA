@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error response (ümumi qayda)",
+  "type": "object",
+  "required": ["error", "code"],
+  "properties": {
+    "error": { "type": "string" },
+    "code": { "type": "string" },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field", "message"],
+        "properties": { "field": { "type": "string" }, "message": { "type": "string" } }
+      }
+    }
+  }
+}

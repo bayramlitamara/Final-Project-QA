@@ -1,0 +1,36 @@
+# Turbo.az ana səhifəsini aç
+* Brauzeri aç ve keçid et "/"
+* "Search Submit Button" görsensin deye maksimum "20" saniye gözle
+
+# <dataId> açılan siyahısından <optionText> seç
+* "ddId" deyişenine <dataId> deyerini ver
+* "ddText" deyişenine <optionText> deyerini ver
+* "xpath=//div[contains(@class,'tz-dropdown') and @data-id='${ddId}']//div[contains(@class,'tz-dropdown__selected')]" elementine klik et
+* "1" saniye gözle
+* "xpath=//div[contains(@class,'tz-dropdown') and @data-id='${ddId}']//div[contains(@class,'tz-dropdown__option')][normalize-space()='${ddText}']" elementine scroll et ve klik et
+
+# Daha çox filtri aç
+* "More Filters Button" elementi "5" saniye içinde görünerse klik et
+
+# Axtarışı göndər
+* "Search Submit Button" elementine JavaScript ile klik et
+* URL "q%5B" içermelidir
+* Sehifenin tam yüklenmesini gözle
+
+# Axtarışı təsdiqlə və nəticələri gözlə
+* "Search Submit Button" elementine JavaScript ile klik et
+* URL "q%5B" içermelidir
+* "Main List Cards" görsensin deye maksimum "20" saniye gözle
+
+# Toyota elanları siyahısını aç
+* Turbo.az ana səhifəsini aç
+* "q_make" açılan siyahısından "Toyota" seç
+* Axtarışı təsdiqlə və nəticələri gözlə
+
+# Siyahını <sortText> üzrə sırala
+* "sortText" deyişenine <sortText> deyerini ver
+* JavaScript icra et "var s=Array.from(document.querySelectorAll('select')).find(function(x){return Array.from(x.options).some(function(o){return o.text.trim()==='Əvvəlcə ucuz';});}); if(!s){throw new Error('Sıralama siyahısı (select) tapılmadı');} var o=Array.from(s.options).find(function(o){return o.text.trim()==='${sortText}';}); s.value=o.value; s.dispatchEvent(new Event('change',{bubbles:true}));"
+* "3" saniye gözle
+* Sehifenin tam yüklenmesini gözle
+* JavaScript icra et "var s=Array.from(document.querySelectorAll('select')).find(function(x){return Array.from(x.options).some(function(o){return o.text.trim()==='Əvvəlcə ucuz';});}); if(!s){throw new Error('Sıralama siyahısı (select) tapılmadı');} if(s.options[s.selectedIndex].text.trim()!=='${sortText}'){throw new Error('Sıralama tətbiq olunmadı');}"
+* "Main List Cards" görsensin deye maksimum "20" saniye gözle

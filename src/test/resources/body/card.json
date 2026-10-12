@@ -1,0 +1,5 @@
+{
+  "accountId": "${cardAccount}",
+  "initialAmount": ${cardAmount},
+  "label": "${cardLabel}"
+}

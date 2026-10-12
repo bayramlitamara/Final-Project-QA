@@ -1,0 +1,22 @@
+# User1 yeni sandbox ilə daxil olur
+* "/auth/login" ünvanına "login-user1.json" ile yeni sessiya açaraq login ol ve "token" tokenini yadda saxla
+* "u1Token" deyişenine "${token}" deyerini ver
+
+# User1 ortaq sandbox ilə daxil olur
+* "/auth/login" ünvanına "login-user1.json" ile login ol ve "token" tokenini yadda saxla
+* "u1Token" deyişenine "${token}" deyerini ver
+
+# User2 yeni sandbox ilə daxil olur
+* "/auth/login" ünvanına "login-user2.json" ile yeni sessiya açaraq login ol ve "token" tokenini yadda saxla
+* "u2Token" deyişenine "${token}" deyerini ver
+
+# User2 ortaq sandbox ilə daxil olur
+* "/auth/login" ünvanına "login-user2.json" ile login ol ve "token" tokenini yadda saxla
+* "u2Token" deyişenine "${token}" deyerini ver
+
+# <authValue> tokeni ilə yeni sorğu hazırla
+* Yeni API sorğusu hazırla
+* Header elave et "Authorization" = <authValue>
+
+# Tokensiz yeni sorğu hazırla
+* Yeni API sorğusu hazırla

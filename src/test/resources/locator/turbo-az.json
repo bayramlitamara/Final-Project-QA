@@ -1,0 +1,166 @@
+{
+  "Search Submit Button": {
+    "locatorType": "CSS",
+    "locatorValue": "button.main-search__btn.tz-btn.tz-btn--primary[name='commit']"
+  },
+  "More Filters Button": {
+    "locatorType": "CSS",
+    "locatorValue": ".js-main-search-slide-down"
+  },
+  "Price From Input": {
+    "locatorType": "ID",
+    "locatorValue": "q_price_from"
+  },
+  "Price To Input": {
+    "locatorType": "ID",
+    "locatorValue": "q_price_to"
+  },
+  "Mileage From Input": {
+    "locatorType": "ID",
+    "locatorValue": "q_mileage_from"
+  },
+  "Mileage To Input": {
+    "locatorType": "ID",
+    "locatorValue": "q_mileage_to"
+  },
+  "Loan Checkbox": {
+    "locatorType": "ID",
+    "locatorValue": "q_loan"
+  },
+  "Loan Checkbox Label": {
+    "locatorType": "CSS",
+    "locatorValue": "label[for='q_loan']"
+  },
+  "Selected Make Options": {
+    "locatorType": "XPATH",
+    "locatorValue": "//div[contains(@class,'tz-dropdown') and @data-id='q_make']//div[contains(@class,'tz-dropdown__option') and contains(@class,'is-selected')]"
+  },
+  "Selected Region Options": {
+    "locatorType": "XPATH",
+    "locatorValue": "//div[contains(@class,'tz-dropdown') and @data-id='q_region']//div[contains(@class,'tz-dropdown__option') and contains(@class,'is-selected')]"
+  },
+  "Reset Link": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[contains(@class,'js-main-search-slide-down')]/preceding::*[normalize-space(.)='Sıfırla' and not(.//*[normalize-space(.)='Sıfırla'])])[last()]"
+  },
+  "Sort Dropdown": {
+    "locatorType": "XPATH",
+    "locatorValue": "//div[contains(@class,'tz-dropdown')][.//*[normalize-space()='Əvvəlcə ucuz']]//div[contains(@class,'tz-dropdown__selected')]"
+  },
+  "Main List Cards": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')]"
+  },
+  "Main List Card Links": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')]//a[contains(@class,'products-i__link')]"
+  },
+  "Main List AZN Cards": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))]"
+  },
+  "Main List Regular AZN Cards": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))]"
+  },
+  "First Card Name": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[1]//div[contains(@class,'products-i__name')]"
+  },
+  "First Card Price": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[1]//div[contains(@class,'products-i__price')]"
+  },
+  "First Card Link": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[1]//a[contains(@class,'products-i__link')]"
+  },
+  "Second Card Link": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[2]//a[contains(@class,'products-i__link')]"
+  },
+  "Third Card Link": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[3]//a[contains(@class,'products-i__link')]"
+  },
+  "First Card Bookmark": {
+    "locatorType": "XPATH",
+    "locatorValue": "((//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')])[1]//a[contains(@href,'/bookmarks')]"
+  },
+  "Pagination Page 2": {
+    "locatorType": "XPATH",
+    "locatorValue": "//div[contains(@class,'pagination')]//a[normalize-space()='2']"
+  },
+  "Cards Not Toyota": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(starts-with(normalize-space(.//div[contains(@class,'products-i__name')]),'Toyota'))]"
+  },
+  "Cards Not Toyota Camry": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(starts-with(normalize-space(.//div[contains(@class,'products-i__name')]),'Toyota Camry'))]"
+  },
+  "Cards Not Hyundai Santa Fe": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(starts-with(normalize-space(.//div[contains(@class,'products-i__name')]),'Hyundai Santa Fe'))]"
+  },
+  "Cards Not In Gence": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(starts-with(normalize-space(.//div[contains(@class,'products-i__datetime')]),'Gəncə,'))]"
+  },
+  "Cards Not In Baku": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(starts-with(normalize-space(.//div[contains(@class,'products-i__datetime')]),'Bakı,'))]"
+  },
+  "AZN Prices Outside 10000-20000": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))][number(translate(normalize-space(.//div[contains(@class,'products-i__price')]),translate(normalize-space(.//div[contains(@class,'products-i__price')]),'0123456789',''),'')) < 10000 or number(translate(normalize-space(.//div[contains(@class,'products-i__price')]),translate(normalize-space(.//div[contains(@class,'products-i__price')]),'0123456789',''),'')) > 20000]"
+  },
+  "AZN Prices Not 15000": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))][number(translate(normalize-space(.//div[contains(@class,'products-i__price')]),translate(normalize-space(.//div[contains(@class,'products-i__price')]),'0123456789',''),'')) != 15000]"
+  },
+  "Years Outside 2015-2020": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][number(substring-before(normalize-space(.//div[contains(@class,'products-i__attributes')]),',')) < 2015 or number(substring-before(normalize-space(.//div[contains(@class,'products-i__attributes')]),',')) > 2020]"
+  },
+  "Cards Without kWh": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(contains(.//div[contains(@class,'products-i__attributes')],'kWh'))]"
+  },
+  "Cards With Combustion Engine": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][contains(.//div[contains(@class,'products-i__attributes')],' L')][number(substring-before(substring-after(normalize-space(.//div[contains(@class,'products-i__attributes')]),', '),' L')) > 0]"
+  },
+  "Mileage Above 50000": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][number(translate(substring-after(substring-after(normalize-space(.//div[contains(@class,'products-i__attributes')]),', '),', '),' km ','')) > 50000]"
+  },
+  "Cards Without Loan Label": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][not(contains(normalize-space(.),'Kreditdədir'))]"
+  },
+  "Engine Outside 1.5-2.0 L": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ')][contains(.//div[contains(@class,'products-i__attributes')],' L')][number(substring-before(substring-after(normalize-space(.//div[contains(@class,'products-i__attributes')]),', '),' L')) < 1.5 or number(substring-before(substring-after(normalize-space(.//div[contains(@class,'products-i__attributes')]),', '),' L')) > 2.0]"
+  },
+  "Price Ascending Violations": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))][following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))]][number(translate(normalize-space(.//div[contains(@class,'products-i__price')]),translate(normalize-space(.//div[contains(@class,'products-i__price')]),'0123456789',''),'')) > number(translate(normalize-space(following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1]//div[contains(@class,'products-i__price')]),translate(normalize-space(following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1]//div[contains(@class,'products-i__price')]),'0123456789',''),''))]"
+  },
+  "Price Descending Violations": {
+    "locatorType": "XPATH",
+    "locatorValue": "(//*[normalize-space(text())='ELANLAR' or normalize-space(text())='Elanlar']/following::div[contains(concat(' ',normalize-space(@class),' '),' products ')])[1]/div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))][following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1][contains(.//div[contains(@class,'products-i__price')],'₼') and not(contains(.//div[contains(@class,'products-i__price')],'$')) and not(contains(.//div[contains(@class,'products-i__price')],'€'))]][number(translate(normalize-space(.//div[contains(@class,'products-i__price')]),translate(normalize-space(.//div[contains(@class,'products-i__price')]),'0123456789',''),'')) < number(translate(normalize-space(following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1]//div[contains(@class,'products-i__price')]),translate(normalize-space(following-sibling::div[contains(concat(' ',normalize-space(@class),' '),' products-i ') and not(contains(@class,'vipped')) and not(contains(@class,'featured'))][1]//div[contains(@class,'products-i__price')]),'0123456789',''),''))]"
+  },
+  "Ad Properties": {
+    "locatorType": "CSS",
+    "locatorValue": ".product-properties__i"
+  },
+  "Ad New Value": {
+    "locatorType": "XPATH",
+    "locatorValue": "//div[contains(@class,'product-properties__i')][.//*[contains(@class,'product-properties__i-name')][normalize-space()='Yeni']]//*[contains(@class,'product-properties__i-value')]"
+  },
+  "Html Root": {
+    "locatorType": "XPATH",
+    "locatorValue": "/html"
+  }
+}

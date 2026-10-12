@@ -1,0 +1,39 @@
+# Alıcı yaratma sorğusu göndər <fullName> <iban> <currency> <nickname>
+* "benFullName" deyişenine <fullName> deyerini ver
+* "benIban" deyişenine <iban> deyerini ver
+* "benCurrency" deyişenine <currency> deyerini ver
+* "benNickname" deyişenine <nickname> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* Body olaraq "beneficiary.json" faylını elave et
+* "POST" sorğusu gönder "/beneficiaries"
+
+# Lәqəbsiz alıcı yaratma sorğusu göndər <fullName> <iban> <currency>
+* "benFullName" deyişenine <fullName> deyerini ver
+* "benIban" deyişenine <iban> deyerini ver
+* "benCurrency" deyişenine <currency> deyerini ver
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* Body olaraq "beneficiary-no-nickname.json" faylını elave et
+* "POST" sorğusu gönder "/beneficiaries"
+
+# Alıcı yaradılır <fullName> <iban> <currency> <nickname> və id <idVar> olaraq saxlanılır
+* Alıcı yaratma sorğusu göndər <fullName> <iban> <currency> <nickname>
+* Status kodunun "201" olmalıdır
+* Json cavabında "id" deyerini <idVar> olaraq yadda saxla
+
+# Lәqəbsiz alıcı yaradılır <iban>
+* Lәqəbsiz alıcı yaratma sorğusu göndər "Test Alici" <iban> "AZN"
+* Status kodunun "201" olmalıdır
+
+# Alıcılar siyahısını al
+* "${u1Token}" tokeni ilə yeni sorğu hazırla
+* "GET" sorğusu gönder "/beneficiaries"
+* Status kodunun "200" olmalıdır
+
+# Siyahı testləri üçün 5 alıcı hazırla
+* "/auth/login" ünvanına "login-user1-list.json" ile login ol ve "token" tokenini yadda saxla
+* "u1Token" deyişenine "${token}" deyerini ver
+* Alıcı yaratma sorğusu göndər "Nigar Əliyeva" "AZ77AIIB40060019440123456781" "AZN" "Anam"
+* Alıcı yaratma sorğusu göndər "Çingiz Abdullayev" "AZ77AIIB40060019440123456782" "USD" "Dost"
+* Alıcı yaratma sorğusu göndər "Elvin Həsənov" "AZ77AIIB40060019440123456783" "EUR" "Qonşu"
+* Alıcı yaratma sorğusu göndər "İlqar Quliyev" "AZ77AIIB40060019440123456784" "AZN" "Əmi"
+* Alıcı yaratma sorğusu göndər "Ülvi Məmmədov" "AZ77AIIB40060019440123456785" "USD" "Həmkar"
